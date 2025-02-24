@@ -1,0 +1,107 @@
+# spring configuration
+spring:
+   application:
+      name: mysite09
+      version: 1.0.0      
+   profiles:
+      active: development
+
+      
+---
+# profile: common
+spring:      
+   mvc:
+      static-path-pattern: /assets/**
+   web:
+      resources:
+         static-locations: classpath:/assets/
+   thymeleaf:
+      check-template-location: true
+      enable-spring-el-compiler: true
+      mode: HTML5
+      prefix : classpath:templates/
+      suffix : .html
+   servlet:
+      multipart:
+         enabled: true
+         file-size-threshold: 5242880
+         max-file-size: 10485760
+         max-request-size: 104857600      
+
+server:
+   error:
+      whitelabel:
+         enabled: false
+      path: /error
+   servlet:
+      context-path: /
+
+
+---
+# profile: development
+spring:
+   config:
+      activate:
+         on-profile: development
+
+   devtools:
+      restart:
+         enabled: true
+      livereload:
+         enabled: true
+
+   thymeleaf:
+      cache: false
+
+server:
+   port: 8080
+
+logging:
+   pattern:
+      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   level:
+      root: INFO
+
+eureka:
+   client:
+      fetchRegistry: true
+      registerWithEureka: false
+      serviceUrl:
+         defaultZone: http://localhost:8761/eureka         
+
+
+---
+# profile: production
+spring:
+   config:
+      activate:
+         on-profile: production             
+
+   thymeleaf:
+      cache: true
+
+server:
+   port: 8094
+
+logging:
+   pattern:
+      file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   logback:
+      rollingpolicy:
+         file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
+         max-file-size: 10MB
+         max-history: 10
+   file:
+      name: logs/${spring.application.name}.log
+   level:
+      root: WARN
+      mysite:
+         exception: ERROR
+
+eureka:
+   client:
+      fetchRegistry: true
+      registerWithEureka: false
+      serviceUrl:
+         defaultZone: http://192.168.66.4:8761/eureka 
+               

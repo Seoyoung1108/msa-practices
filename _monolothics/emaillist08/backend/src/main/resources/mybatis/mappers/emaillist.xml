@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="emaillist">
+	
+	<select id="findAll" resultType="email" parameterType="string">
+		<choose>
+			<when test="keyword == null or keyword ==''">
+				<![CDATA[
+				  select id, first_name, last_name, email
+				    from emaillist 
+		        order by id desc
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				  select id, first_name, last_name, email
+				    from emaillist
+				   where concat(first_name, last_name) like '%${keyword}%'
+				      or email like '%${keyword}%'  
+		        order by id desc
+				]]>
+			</otherwise>
+		</choose>		
+	</select>
+
+	<insert id="insert" parameterType="email">
+		<![CDATA[
+		insert
+		  into emaillist
+		values (null, #{firstName}, #{lastName}, #{email})
+		]]>
+		<selectKey keyProperty="id" resultType="long" order="AFTER">
+			<![CDATA[
+			select last_insert_id()
+			]]>		
+		</selectKey>
+	</insert>
+
+	<delete id="deleteById" parameterType="long">
+		<![CDATA[
+		delete
+		  from emaillist
+		 where id = #{id}
+		]]>
+	</delete>
+
+</mapper>

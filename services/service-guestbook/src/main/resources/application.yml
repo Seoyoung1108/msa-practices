@@ -1,0 +1,101 @@
+# spring configuration
+spring:
+   application:
+      name: service-guestbook
+      version: 1.0.0      
+   profiles:
+      active: development
+
+
+---
+# profile: common(default)
+mybatis:
+   config-location: classpath:mybatis/configuration.xml
+
+server:
+   port: 0
+   error:
+      whitelabel:
+         enabled: false
+      path: /error
+   servlet:
+      context-path: /
+
+
+---
+# profile: development
+spring:
+   config:
+      activate:
+         on-profile: development
+
+   devtools:
+      restart:
+         enabled: true
+      livereload:
+         enabled: true
+         
+   datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://192.168.66.4:3306/webdb?characterEncoding=utf8
+      username: webdb
+      password: webdb
+      hikari:
+         minimum-idle: 10
+         maximum-pool-size: 20    
+
+eureka:
+   instance:
+      preferIpAddress: true
+   client:
+      fetchRegistry: true
+      registerWithEureka: true
+      serviceUrl:
+         defaultZone: http://localhost:8761/eureka
+
+logging:
+   pattern:
+      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   level:
+      root: DEBUG
+           
+                            
+---
+# profile: production
+spring:
+   config:
+      activate:
+         on-profile: production
+
+   datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      url: jdbc:mariadb://192.168.66.4:3306/webdb?characterEncoding=utf8
+      username: webdb
+      password: webdb
+      hikari:
+         minimum-idle: 10
+         maximum-pool-size: 20
+
+eureka:
+   instance:
+      preferIpAddress: true
+   client:
+      fetchRegistry: true
+      registerWithEureka: true
+      serviceUrl:
+         defaultZone: http://192.168.66.4:8761/eureka
+
+logging:
+   pattern:
+      file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   logback:
+      rollingpolicy:
+         file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
+         max-file-size: 10MB
+         max-history: 10
+   file:
+      name: logs/${spring.application.name}.log
+   level:
+      root: WARN
+      guestbook:
+         exception: ERROR
