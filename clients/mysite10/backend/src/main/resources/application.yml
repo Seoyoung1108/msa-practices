@@ -1,0 +1,81 @@
+# spring configuration
+spring:
+   application:
+      name: mysite10
+      version: 1.0.0      
+   profiles:
+      active: development
+
+      
+---
+# profile: common
+spring:
+   mvc:
+      static-path-pattern: /assets/**
+   web:
+      resources:
+         static-locations: classpath:/assets/
+   thymeleaf:
+      check-template-location: true
+      enable-spring-el-compiler: true
+      mode: HTML
+      prefix : classpath:templates/
+      suffix : .html
+
+server:
+   error:
+      whitelabel:
+         enabled: false
+      path: /error
+   servlet:
+      context-path: /
+
+         
+---
+# configuration: development
+spring:
+   config:
+      activate:
+         on-profile: development
+
+   devtools:
+      restart:
+         enabled: true
+      livereload:
+         enabled: true
+
+server:
+   port: 8080
+
+
+logging:
+   pattern:
+      console: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   level:
+      root: INFO
+
+
+---
+# configuration: production
+spring:
+   config:
+      activate:
+         on-profile: production             
+
+server:
+   port: 8095
+
+logging:
+   pattern:
+      file: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5} - %msg%n"
+   logback:
+      rollingpolicy:
+         file-name-pattern: "logs/${spring.application.name}.%d{yyyy-MM-dd}.%i.log.zip"
+         max-file-size: 10MB
+         max-history: 10
+   file:
+      name: logs/${spring.application.name}.log
+   level:
+      root: WARN
+      mysite:
+         exception: ERROR

@@ -1,7 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 
-module.exports = function(env) {
+module.exports = function(env, argv) {
     return {
         mode: "none",
         entry: path.resolve(`src/index.js`),
@@ -36,7 +37,12 @@ module.exports = function(env) {
             }]
         },
         plugins: [
-            new CaseSensitivePathsPlugin()
+            new CaseSensitivePathsPlugin(),
+            new webpack.DefinePlugin({
+                API_URL_GUESTBOOK: JSON.stringify(argv.mode === 'production' ? 'http://192.168.66.4:8888/api/guestbook' : 'http://localhost:8888/api/guestbook'),
+                API_URL_GALLERY: JSON.stringify(argv.mode === 'production' ? 'http://192.168.66.4:8888/api/gallery' : 'http://localhost:8888/api/gallery'),
+                API_URL_STORAGE: JSON.stringify(argv.mode === 'production' ? 'http://192.168.66.4:8888/api/storage' : 'http://localhost:8888/api/storage')
+            })
         ],
         devtool: "eval-source-map",        
         devServer: {
@@ -45,10 +51,6 @@ module.exports = function(env) {
             liveReload: true,
             compress: true,
             hot: false,
-            proxy: [{
-                context: ['/api'],
-                target: 'http://localhost:8080',
-            }],            
             static: {
                 directory: path.resolve('./public')
             },
