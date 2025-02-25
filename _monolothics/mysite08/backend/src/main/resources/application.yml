@@ -59,7 +59,7 @@ spring:
       cache: false
    datasource:
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://192.168.66.4:3306/webdb?charset=utf8
+      url: jdbc:mariadb://192.168.0.153:3306/webdb?charset=utf8
       username: webdb
       password: webdb
       hikari:
@@ -77,7 +77,7 @@ logging:
 
 mysite:
    upload:
-      location: /Users/kickscar/mysite-uploads
+      location: /mysite-uploads
 
 
 ---
@@ -89,7 +89,7 @@ spring:
 
    datasource:
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://192.168.66.4:3306/webdb?charset=utf8
+      url: jdbc:mariadb://192.168.0.153:3306/webdb?charset=utf8
       username: webdb
       password: webdb
       hikari:

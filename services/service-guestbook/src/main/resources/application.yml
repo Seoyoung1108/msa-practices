@@ -37,7 +37,7 @@ spring:
          
    datasource:
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://192.168.66.4:3306/webdb?characterEncoding=utf8
+      url: jdbc:mariadb://192.168.0.153:3306/webdb?characterEncoding=utf8
       username: webdb
       password: webdb
       hikari:
@@ -69,7 +69,7 @@ spring:
 
    datasource:
       driver-class-name: org.mariadb.jdbc.Driver
-      url: jdbc:mariadb://192.168.66.4:3306/webdb?characterEncoding=utf8
+      url: jdbc:mariadb://192.168.0.153:3306/webdb?characterEncoding=utf8
       username: webdb
       password: webdb
       hikari:
@@ -83,7 +83,7 @@ eureka:
       fetchRegistry: true
       registerWithEureka: true
       serviceUrl:
-         defaultZone: http://192.168.66.4:8761/eureka
+         defaultZone: http://192.168.0.153:8761/eureka
 
 logging:
    pattern:
