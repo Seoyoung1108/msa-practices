@@ -26,7 +26,7 @@ spring:
    cloud:
       config:
          server:
-            encrypt.enabled: true
+            encrypt.enabled: false
             git:
                uri: https://github.com/bitacademy-poscodx09/msa-practices-config-repo
                searchPaths: service-emaillist,
@@ -61,11 +61,11 @@ spring:
        server:
           encrypt.enabled: false
           native:
-              searchLocations: file:///Users/kickscar/DoWork/STS-Workspace-POSCODX09/msa-practices-config-repo/service-emaillist,
-                               file:///Users/kickscar/DoWork/STS-Workspace-POSCODX09/msa-practices-config-repo/service-storage,
-                               file:///Users/kickscar/DoWork/STS-Workspace-POSCODX09/msa-practices-config-repo/service-gallery,
-                               file:///Users/kickscar/DoWork/STS-Workspace-POSCODX09/msa-practices-config-repo/service-guestbook,
-                               file:///Users/kickscar/DoWork/STS-Workspace-POSCODX09/msa-practices-config-repo/service-gateway-server
+              searchLocations: file:///C:/Users/BIT/Desktop/sts-workspace/msa-practices-config-repo/service-emaillist,
+                               file:///C:/Users/BIT/Desktop/sts-workspace/msa-practices-config-repo/service-storage,
+                               file:///C:/Users/BIT/Desktop/sts-workspace/msa-practices-config-repo/service-gallery,
+                               file:///C:/Users/BIT/Desktop/sts-workspace/msa-practices-config-repo/service-guestbook,
+                               file:///C:/Users/BIT/Desktop/sts-workspace/msa-practices-config-repo/service-gateway-server
 
 logging:
    pattern:

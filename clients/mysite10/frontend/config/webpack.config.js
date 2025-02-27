@@ -39,9 +39,9 @@ module.exports = function(env, argv) {
         plugins: [
             new CaseSensitivePathsPlugin(),
             new webpack.DefinePlugin({
-                API_URL_GUESTBOOK: JSON.stringify(argv.mode === 'production' ? 'http://192.168.0.153:8888/api/guestbook' : 'http://localhost:8888/api/guestbook'),
-                API_URL_GALLERY: JSON.stringify(argv.mode === 'production' ? 'http://192.168.0.153:8888/api/gallery' : 'http://localhost:8888/api/gallery'),
-                API_URL_STORAGE: JSON.stringify(argv.mode === 'production' ? 'http://192.168.0.153:8888/api/storage' : 'http://localhost:8888/api/storage')
+                API_URL_GUESTBOOK: JSON.stringify(argv.mode === 'production' ? 'http://192.168.0.117:8888/api/guestbook' : 'http://localhost:8888/api/guestbook'),
+                API_URL_GALLERY: JSON.stringify(argv.mode === 'production' ? 'http://192.168.0.117:8888/api/gallery' : 'http://localhost:8888/api/gallery'),
+                API_URL_STORAGE: JSON.stringify(argv.mode === 'production' ? 'http://192.168.0.117:8888/api/storage' : 'http://localhost:8888/api/storage')
             })
         ],
         devtool: "eval-source-map",        

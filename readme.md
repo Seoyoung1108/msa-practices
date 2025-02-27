@@ -9,7 +9,7 @@
    |--- servers
    |       |--- service-registry-server [8761, 8761]
    |       |--- embeded-keyclock-server	[5555, 5555]
-   |       |--- service-config-server	[6666, 6666]
+   |       |--- service-config-server	[7777, 7777]
    |       |--- service-gateway-server	[8888, 8888]
    |--- services
    |       |--- service-emaillist       [0, 0]

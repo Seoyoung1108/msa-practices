@@ -10,14 +10,15 @@ export default function Message({id, name, message, deleteMessage}) {
             <p>
                 {
                     message?.split('\n').map((line, i) => i > 0 ?
-                        <span key={`${id}${i}`}>
-                            <br/>
-                            {line}
-                        </span> :
-                        <span key={`${id}${i}`}>
-                            {line}
-                        </span>
-                    )
+                    <span key={`${id}${i}`}>
+                        <br/>
+                        {line}
+                    </span> :
+                    <span key={`${id}${i}`}>
+                        {line}
+                    </span>
+                )
+
                 }
             </p>
             <strong/>
