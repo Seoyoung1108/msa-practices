@@ -1,25 +1,25 @@
+# spring configuration
 spring:
    application:
-      name: emaillist
+      name: emaillist11
+      version: 1.0.0
    profiles:
       active: development
 
 
-
-
 ---
-# configuration: common
+# profile: common
 spring:
    mvc:
       static-path-pattern: /assets/**
-      throw-exception-if-no-handler-found: true
    web:
       resources:
          static-locations: classpath:/assets/
    thymeleaf:
-      prefix : classpath:templates/
       check-template-location: true
-      mode: HTML5
+      enable-spring-el-compiler: true
+      mode: HTML
+      prefix : classpath:templates/
       suffix : .html
 
 server:
@@ -29,37 +29,36 @@ server:
       path: /error
    servlet:
       context-path: /
-      encoding:
-         charset: utf-8
-         enabled: true
          
-               
 
 ---
-# configuration: development
+# profile: development
 spring:
    config:
       activate:
          on-profile: development
          
    devtools:
+      restart:
+         enabled: true
       livereload:
-         enabled: true         
+         enabled: true
+       
    security:
       oauth2:
          client:
             provider:
                 keycloak-authorization-server:
-                   issuer-uri: http://localhost:5555/realms/poscodx2023-realm
-                   authorization-uri: http://localhost:5555/realms/poscodx2023-realm/protocol/openid-connect/auth
-                   token-uri: http://localhost:5555/realms/poscodx2023-realm/protocol/openid-connect/token
+                   issuer-uri: http://localhost:5555/realms/poscodx-realm
+                   authorization-uri: http://localhost:5555/realms/poscodx-realm/protocol/openid-connect/auth
+                   token-uri: http://localhost:5555/realms/poscodx-realm/protocol/openid-connect/token
             registration:
                 emaillist-oauth2-client:
                    provider: keycloak-authorization-server                  
                    authorization-grant-type: authorization_code
                    redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
                    client-id: emaillist
-                   client-secret: 649Yde3fNbCBxHG2AxAI8zF70M5R9PjM
+                   client-secret: dvyCsJHRv0hyDtlb6hllTo68hUt2pGcy
                    scope: [openid, profile, email, roles]
 
 server:
@@ -86,16 +85,16 @@ spring:
          client:
             provider:
                 keycloak-authorization-server:
-                   issuer-uri: http://192.168.66.4:5555/realms/poscodx2023-realm
-                   authorization-uri: http://192.168.66.4:5555/realms/poscodx2023-realm/protocol/openid-connect/auth
-                   token-uri: http://192.168.66.4:5555/realms/poscodx2023-realm/protocol/openid-connect/token
+                   issuer-uri: http://192.168.0.153:5555/realms/poscodx-realm
+                   authorization-uri: http://192.168.0.153:5555/realms/poscodx-realm/protocol/openid-connect/auth
+                   token-uri: http://192.168.0.153:5555/realms/poscodx-realm/protocol/openid-connect/token
             registration:
                 emaillist-oauth2-client:
                    provider: keycloak-authorization-server                  
                    authorization-grant-type: authorization_code
-                   redirect-uri: "http://192.168.66.4:8080/login/oauth2/code/{registrationId}"
+                   redirect-uri: "http://192.168.0.153:8080/login/oauth2/code/{registrationId}"
                    client-id: emaillist
-                   client-secret: 649Yde3fNbCBxHG2AxAI8zF70M5R9PjM
+                   client-secret: dvyCsJHRv0hyDtlb6hllTo68hUt2pGcy
                    scope: [openid, profile, email, roles]
 
 server:
@@ -113,7 +112,5 @@ logging:
       name: logs/${spring.application.name}.log
    level:
       root: WARN
-      com:
-         poscodx:
-            emaillist:
-               exception: ERROR
+      emaillist:
+         exception: ERROR
