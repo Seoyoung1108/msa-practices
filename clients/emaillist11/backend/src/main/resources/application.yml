@@ -58,7 +58,7 @@ spring:
                    authorization-grant-type: authorization_code
                    redirect-uri: "http://localhost:8080/login/oauth2/code/{registrationId}"
                    client-id: emaillist
-                   client-secret: dvyCsJHRv0hyDtlb6hllTo68hUt2pGcy
+                   client-secret: JwxAWBGuLIpz7oMETfyhlR0eV1nkGEef
                    scope: [openid, profile, email, roles]
 
 server:
@@ -85,16 +85,16 @@ spring:
          client:
             provider:
                 keycloak-authorization-server:
-                   issuer-uri: http://192.168.0.153:5555/realms/poscodx-realm
-                   authorization-uri: http://192.168.0.153:5555/realms/poscodx-realm/protocol/openid-connect/auth
-                   token-uri: http://192.168.0.153:5555/realms/poscodx-realm/protocol/openid-connect/token
+                   issuer-uri: http://192.168.66.4:5555/realms/poscodx-realm
+                   authorization-uri: http://192.168.66.4:5555/realms/poscodx-realm/protocol/openid-connect/auth
+                   token-uri: http://192.168.66.4:5555/realms/poscodx-realm/protocol/openid-connect/token
             registration:
                 emaillist-oauth2-client:
                    provider: keycloak-authorization-server                  
                    authorization-grant-type: authorization_code
-                   redirect-uri: "http://192.168.0.153:8080/login/oauth2/code/{registrationId}"
+                   redirect-uri: "http://192.168.66.4:8080/login/oauth2/code/{registrationId}"
                    client-id: emaillist
-                   client-secret: dvyCsJHRv0hyDtlb6hllTo68hUt2pGcy
+                   client-secret: JwxAWBGuLIpz7oMETfyhlR0eV1nkGEef
                    scope: [openid, profile, email, roles]
 
 server:
